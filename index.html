@@ -1,0 +1,375 @@
+<!doctype html>
+<html>
+  <head>
+    <title>BMS Exam 3</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu",
+          "Droid Sans", sans-serif, "Meiryo";
+        padding: 0 12px;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-bottom: 24px;
+        width: 100%;
+      }
+      table > thead > tr > th,
+      table > tbody > tr > td {
+        padding: 5px 10px;
+      }
+      table > thead > tr > th {
+        text-align: left;
+        border-bottom: 1px solid;
+      }
+      table > tbody > tr + tr > td {
+        border-top: 1px solid;
+      }
+
+      .tooltip {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+      }
+      .tooltip img {
+        display: none;
+        position: absolute;
+        width: var(--tooltip-img-width, 300px);
+        height: auto;
+        border: 2px solid #f00;
+        background: #ffffcc;
+        padding: 5px;
+        z-index: 10;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(10px);
+        max-width: 90vw; /* ✅ prevents image from exceeding viewport width */
+        max-height: 80vh; /* ✅ keeps image inside visible page vertically */
+        object-fit: contain;
+        box-sizing: border-box;
+      }
+
+      .tooltip[data-position="below"] img {
+        bottom: auto;
+        top: 100%;
+      }
+
+      .tooltip:hover img {
+        display: block;
+        /* Reposition if too close to top or bottom of viewport */
+        top: auto;
+        bottom: auto;
+      }
+
+      .blurred {
+        filter: blur(3px);
+        transition: filter 0.3s ease;
+      }
+
+      table td:not(:first-child),
+      table td li {
+        cursor: pointer;
+      }
+
+      summary {
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 16px 0;
+      }
+
+      details {
+        border: 2px solid #444;
+        border-radius: 8px;
+        padding: 10px;
+        background: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Protected Content</h2>
+    <p>Please enter the password to view the content:</p>
+    <input type="password" id="password" placeholder="Enter password" />
+    <button onclick="checkPassword()">Submit</button>
+    <div id="content" style="display: none; margin-top: 20px">
+      <!-- <div> -->
+      <div class="blur-buttons">
+        <button id="blurAll">Blur All</button>
+        <button id="unblurAll">Unblur All</button>
+      </div>
+      <!-- Center a div -->
+      <br />
+      <details>
+        <summary>Lecture 5: GI physiology Digestive Organs</summary>
+        <table>
+          <thead>
+            <tr>
+              <th>Substance</th>
+              <th>Regulatory Type</th>
+              <th>Cell Type/Source</th>
+              <th>Location</th>
+              <th>Primary Functions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Gastrin</strong></td>
+              <td>Endocrine</td>
+              <td>G cells</td>
+              <td>Stomach (Antrum)</td>
+              <td>
+                Stimulates gastric acid (HCl) secretion and growth of gastric
+                mucosa
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CCK</strong></td>
+              <td>Endocrine/Paracrine</td>
+              <td>I cells</td>
+              <td>Duodenum</td>
+              <td>
+                Stimulates pancreatic enzymes and gallbladder contraction;
+                inhibits gastric emptying
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Secretin</strong></td>
+              <td>Endocrine</td>
+              <td>S cells</td>
+              <td>Duodenum</td>
+              <td>
+                Stimulates pancreatic bicarbonate secretion; inhibits gastric
+                acid
+              </td>
+            </tr>
+            <tr>
+              <td><strong>GIP</strong></td>
+              <td>Endocrine</td>
+              <td>K cells</td>
+              <td>Intestine</td>
+              <td>
+                Stimulates insulin release; inhibits gastric hydrogen ion
+                secretion
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Motilin</strong></td>
+              <td>Endocrine</td>
+              <td>Enteroendocrine cells</td>
+              <td>GI Tract</td>
+              <td>Increases GI motility</td>
+            </tr>
+            <tr>
+              <td><strong>Leptin</strong></td>
+              <td>Endocrine</td>
+              <td>Adipocytes (fat cells)</td>
+              <td>Body fat</td>
+              <td>Decreases appetite by stimulating anorexigenic neurons</td>
+            </tr>
+            <tr>
+              <td><strong>Ghrelin</strong></td>
+              <td>Endocrine</td>
+              <td>P/D1 cells</td>
+              <td>Stomach</td>
+              <td>Increases appetite/food intake (orexigenic)</td>
+            </tr>
+            <tr>
+              <td><strong>Peptide YY</strong></td>
+              <td>Endocrine</td>
+              <td>L cells</td>
+              <td>Intestine</td>
+              <td>
+                Inhibits gastric emptying, acid secretion, and food intake
+              </td>
+            </tr>
+            <tr>
+              <td><strong>GLP-1</strong></td>
+              <td>Endocrine</td>
+              <td>L cells</td>
+              <td>Intestine</td>
+              <td>Stimulates insulin secretion and epithelial proliferation</td>
+            </tr>
+            <tr>
+              <td><strong>Somatostatin</strong></td>
+              <td>Paracrine</td>
+              <td>D cells</td>
+              <td>GI tract/Pancreas</td>
+              <td>
+                Prenotes: Potent inhibitor of GI hormones and gastric acid
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Histamine</strong></td>
+              <td>Paracrine</td>
+              <td>ECL cells</td>
+              <td>Gastric mucosa</td>
+              <td>Increases gastric acid secretion</td>
+            </tr>
+            <tr>
+              <td><strong>Serotonin</strong></td>
+              <td>Paracrine</td>
+              <td>ECL/Mast cells</td>
+              <td>GI tract</td>
+              <td>Regulates smooth muscle and water absorption</td>
+            </tr>
+            <tr>
+              <td><strong>VIP</strong></td>
+              <td>Neurocrine</td>
+              <td>Neurons</td>
+              <td>GI smooth muscle</td>
+              <td>Relaxes smooth muscle; stimulates pancreatic secretion</td>
+            </tr>
+            <tr>
+              <td><strong>Enkephalins</strong></td>
+              <td>Neurocrine</td>
+              <td>Nerves</td>
+              <td>Smooth muscle</td>
+              <td>Slows GI motility and inhibits fluid secretion</td>
+            </tr>
+            <tr>
+              <td><strong>GRP</strong></td>
+              <td>Neurocrine</td>
+              <td>Vagus nerve</td>
+              <td>Stomach</td>
+              <td>Stimulates gastrin release from G cells</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+
+    <style>
+      /* same as before */
+      .blurred {
+        filter: blur(10px);
+        transition: filter 0.3s ease;
+      }
+
+      /* Make clickable cursor for td */
+      table td:not(:first-child) {
+        cursor: pointer;
+      }
+
+      /* li inside blurred td will inherit blur from parent */
+      table td.blurred li {
+        filter: inherit;
+      }
+
+      .blur-buttons {
+        text-align: center;
+        margin-bottom: 16px;
+      }
+      .blur-buttons button {
+        margin: 0 5px;
+        padding: 5px 12px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .blur-section li {
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+
+      /* Blur effect same as td */
+      .blur-section li.blurred {
+        filter: blur(10px);
+        transition: filter 0.3s ease;
+      }
+
+      /* Override for bold text so it always stays clear */
+      .blur-section li.blurred b {
+        filter: none !important;
+      }
+
+      .blur-section .blur-target {
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      .blurred {
+        filter: blur(10px);
+        transition: filter 0.3s ease;
+      }
+    </style>
+
+    <script>
+      // === BLUR LOGIC ===
+      document.addEventListener("DOMContentLoaded", () => {
+        // Select table cells + blur-target spans
+        const blurCells = document.querySelectorAll(
+          "table td:not(:first-child), .blur-section .blur-target",
+        );
+
+        blurCells.forEach((cell) => {
+          cell.addEventListener("click", () => {
+            cell.classList.toggle("blurred");
+          });
+        });
+
+        // Keyboard shortcut (space toggles all)
+        document.addEventListener("keydown", (event) => {
+          if (event.code === "Space") {
+            const allBlurred = Array.from(blurCells).every((cell) =>
+              cell.classList.contains("blurred"),
+            );
+            if (allBlurred) {
+              blurCells.forEach((cell) => cell.classList.remove("blurred"));
+            } else {
+              blurCells.forEach((cell) => cell.classList.add("blurred"));
+            }
+            event.preventDefault();
+          }
+        });
+
+        // Buttons
+        document.getElementById("blurAll").addEventListener("click", () => {
+          blurCells.forEach((cell) => cell.classList.add("blurred"));
+        });
+        document.getElementById("unblurAll").addEventListener("click", () => {
+          blurCells.forEach((cell) => cell.classList.remove("blurred"));
+        });
+      });
+
+      // === CUSTOM HEADER ELEMENT ===
+      class MyHeader extends HTMLElement {
+        connectedCallback() {
+          const text = this.innerHTML.trim() || "Section Title";
+
+          this.innerHTML = `
+        <div
+          style="
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            --tooltip-img-width: 400px;
+          "
+        >
+          ${text}
+        </div>
+        <br />
+      `;
+        }
+      }
+
+      // Important: name must contain a hyphen
+      customElements.define("my-header", MyHeader);
+
+      function checkPassword() {
+        const enteredPassword = document.getElementById("password").value;
+        const correctPassword = "chud";
+        if (enteredPassword === correctPassword) {
+          document.getElementById("content").style.display = "block";
+          document.querySelector("h2").style.display = "none";
+          document.querySelector("p").style.display = "none";
+          document.getElementById("password").style.display = "none";
+          event.target.style.display = "none";
+        } else {
+          alert("Incorrect password. Please try again.");
+        }
+      }
+    </script>
+  </body>
+</html>
